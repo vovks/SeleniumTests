@@ -1,1 +1,5 @@
-"# SeleniumTests" 
+"# SeleniumTests"
+Requirements:
+- Chrome version - 90
+- selenium v 4.0
+- junit-jupiter 5.8.0-M1
