@@ -19,7 +19,7 @@ public class HomeworkSelenium {
         driver = new ChromeDriver();
         driver.get("https://www.yellowtailwine.com");
         driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
     }
 
