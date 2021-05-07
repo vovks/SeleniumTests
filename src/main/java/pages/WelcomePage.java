@@ -1,16 +1,22 @@
-import org.openqa.selenium.WebDriver;
+package pages;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import static Utils.Waiters.waitForElementToBeVisible;
 
-public class WelcomePage {
-    WebDriver driver;
 
-    public WelcomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+public class WelcomePage extends AbstractPage{
+
+    public WelcomePage() {
+        super();
+    }
+
+    @Override
+    public void waitForLoadableElement() {
+        waitForElementToBeVisible(welcomeButton, 3);
+
     }
 
     @FindBy(css = "[for=\"confirm\"]")
@@ -54,7 +60,7 @@ public class WelcomePage {
         select.selectByIndex(3);
 
         welcomeButton.click();
-        return new MainPage(driver);
+        return new MainPage();
     }
 
 }

@@ -1,21 +1,23 @@
+package pages;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CocktailsPage {
-    WebDriver driver;
+import static Utils.Waiters.waitForElementToBeVisible;
 
-    public CocktailsPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+public class CocktailsPage extends AbstractPage{
+
+    public CocktailsPage() {
+        super();
+    }
+
+    @Override
+    public void waitForLoadableElement() {
+        waitForElementToBeVisible(findVeryBerrySlushieRecipe, 3);
+
     }
 
     @FindBy(css = ".selected span")
@@ -77,14 +79,9 @@ public class CocktailsPage {
         return true;
     }
 
-    public void waitForWineRecipes(){
-        (new WebDriverWait(driver, Duration.ofSeconds(3)))
-                .until(ExpectedConditions.visibilityOf(findVeryBerrySlushieRecipe));
-    }
-
     public RecipePage clickOnRaspberryRoseRecipe(){
         findRaspberryRoseRecipe.click();
-        return new RecipePage(driver);
+        return new RecipePage();
     }
 
     public void clickOnSparklingWineCocktailsType(){
@@ -96,7 +93,7 @@ public class CocktailsPage {
     }
 
     public int getListOfMultipleCocktailsRecipes(){
-        return driver.findElements(By.cssSelector("[data-types=\"bubbles\"], [data-types=\"red\"]")).size();
+        return ProviderForDriver.getDriver().findElements(By.cssSelector("[data-types=\"bubbles\"], [data-types=\"red\"]")).size();
         }
 
 }

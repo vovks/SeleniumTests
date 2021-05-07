@@ -1,21 +1,23 @@
-import org.openqa.selenium.WebDriver;
+package pages;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import static Utils.Waiters.waitForElementToBeVisible;
 
-public class MainPage {
-    WebDriver driver;
+public class MainPage extends AbstractPage{
 
-    public MainPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public MainPage() {
+        super();
     }
+
+    @Override
+    public void waitForLoadableElement() {
+        waitForElementToBeVisible(elementMenu,3);
+        waitForElementToBeVisible(headerContactUs,3);
+    }
+
 
     @FindBy (css = ".fa.fa-bars span")
     private WebElement elementMenu;
@@ -111,18 +113,8 @@ public class MainPage {
         return true;
     }
 
-    public void waitForHeaderLink(){
-        (new WebDriverWait(driver, Duration.ofSeconds(3)))
-                .until(ExpectedConditions.visibilityOf(headerContactUs));
-    }
-
     public void clickYellowTailElement(){
         headerYellowTail.click();
-    }
-
-    public void waitForElementMenu(){
-        (new WebDriverWait(driver, Duration.ofSeconds(3)))
-                .until(ExpectedConditions.visibilityOf(elementMenu));
     }
 
     public void clickCountrySelect(){
@@ -131,17 +123,17 @@ public class MainPage {
 
     public ChinaYellowTailPage clickCountryChina(){
         countryChina.click();
-        return new ChinaYellowTailPage(driver);
+        return new ChinaYellowTailPage();
     }
 
     public WhereToBuyPage clickWhereToBuy(){
         headerWhereToBuy.click();
-        return new WhereToBuyPage(driver);
+        return new WhereToBuyPage();
     }
 
     public CocktailsPage clickCocktails(){
         headerCocktails.click();
-        return new CocktailsPage(driver);
+        return new CocktailsPage();
     }
 
 }

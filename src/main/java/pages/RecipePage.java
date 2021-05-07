@@ -1,14 +1,17 @@
-import org.openqa.selenium.WebDriver;
+package pages;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class RecipePage {
-    WebDriver driver;
+public class RecipePage extends AbstractPage {
 
-    public RecipePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    public RecipePage() {
+        super();
+    }
+
+    @Override
+    public void waitForLoadableElement() {
+
     }
 
     @FindBy(css = ".ingredients")
