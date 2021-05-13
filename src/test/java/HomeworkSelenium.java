@@ -26,7 +26,7 @@ public class HomeworkSelenium extends JunitRunner{
         MainPage mainPage = welcomePage.welcomePageIsPassed();
 
         Assertions.assertTrue(mainPage.getElementMenu().contains("MENU"));
-        Assertions.assertFalse(ProviderForDriver.getDriver().getPageSource().contains("no-scroll"));
+        Assertions.assertFalse(DriverProvider.getDriver().getPageSource().contains("no-scroll"));
     }
 
     @Test
@@ -98,22 +98,20 @@ public class HomeworkSelenium extends JunitRunner{
         mainPage.clickCountrySelect();
 
         ChinaYellowTailPage chinaPage = mainPage.clickCountryChina();
-
         chinaPage.waitForLoadableElement();
-
         chinaPage.clickWeiboButton();
 
-        int winHandleNum = ProviderForDriver.getDriver().getWindowHandles().size();
+        int winHandleNum = DriverProvider.getDriver().getWindowHandles().size();
         if (winHandleNum > 1) {
-            for (String winHandle:ProviderForDriver.getDriver().getWindowHandles()){
-                ProviderForDriver.getDriver().switchTo().window(winHandle);
+            for (String winHandle: DriverProvider.getDriver().getWindowHandles()){
+                DriverProvider.getDriver().switchTo().window(winHandle);
             }
         }
 
-        Boolean explicitWait = (new WebDriverWait(ProviderForDriver.getDriver(),Duration.ofSeconds(15)))
+        Boolean explicitWait = (new WebDriverWait(DriverProvider.getDriver(),Duration.ofSeconds(15)))
                 .until(ExpectedConditions.urlToBe("https://weibo.com/yellowtailChina"));
 
-        Assertions.assertTrue(ProviderForDriver.getDriver().getCurrentUrl().contains("https://weibo.com/yellowtailChina"));
+        Assertions.assertTrue(DriverProvider.getDriver().getCurrentUrl().contains("https://weibo.com/yellowtailChina"));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,7 @@ public class CocktailsPage extends AbstractPage{
         super();
     }
 
+    @Step
     @Override
     public void waitForLoadableElement() {
         waitForElementToBeVisible(findVeryBerrySlushieRecipe, 3);
@@ -54,17 +56,21 @@ public class CocktailsPage extends AbstractPage{
     private WebElement selectSparklingWineCocktails;
 
 
+    @Step
     public void clickSelectType(){
         findSelectType.click();
     }
 
+    @Step
     public void clickOnRedWineCocktailsType(){
         selectRedWineCocktails.click();
     }
 
+    @Step
     public boolean getListOfCocktailsRecipes(){
         List<WebElement> wineRecipes = new ArrayList<>();
 
+        boolean isAllNotShown = true;
         wineRecipes.add(findMulledWineRecipe);
         wineRecipes.add(findRedWineSpritzerRecipe);
         wineRecipes.add(findChocolateFondueRecipe);
@@ -74,26 +80,34 @@ public class CocktailsPage extends AbstractPage{
         wineRecipes.add(findVeryBerrySlushieRecipe);
 
         for (WebElement item: wineRecipes) {
-            item.isDisplayed();
-        }
-        return true;
+            if (!item.isDisplayed()) {
+                isAllNotShown = false;
+                return isAllNotShown;
+            }
+        };
+
+            return isAllNotShown;
     }
 
+    @Step
     public RecipePage clickOnRaspberryRoseRecipe(){
         findRaspberryRoseRecipe.click();
         return new RecipePage();
     }
 
+    @Step
     public void clickOnSparklingWineCocktailsType(){
         selectSparklingWineCocktails.click();
     }
 
+    @Step
     public String checkMultipleType(){
         return findSelectType.getText();
     }
 
+    @Step
     public int getListOfMultipleCocktailsRecipes(){
-        return ProviderForDriver.getDriver().findElements(By.cssSelector("[data-types=\"bubbles\"], [data-types=\"red\"]")).size();
+        return DriverProvider.getDriver().findElements(By.cssSelector("[data-types=\"bubbles\"], [data-types=\"red\"]")).size();
         }
 
 }

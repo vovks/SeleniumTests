@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class MainPage extends AbstractPage{
         super();
     }
 
+    @Step
     @Override
     public void waitForLoadableElement() {
         waitForElementToBeVisible(elementMenu,3);
@@ -62,40 +64,47 @@ public class MainPage extends AbstractPage{
     private WebElement countryChina;
 
 
+    @Step
     public String getElementMenu(){
         return elementMenu.getText();
     }
 
+    @Step
     public boolean searchElementMenu(){
         elementMenu.isDisplayed();
         return true;
     }
 
+    @Step
     public boolean searchBigText(){
         bigText.isDisplayed();
         return true;
     }
 
+    @Step
     public boolean searchSmallerText(){
         smallerText.isDisplayed();
         return true;
     }
 
+    @Step
     public boolean searchFindWineButton(){
         findWineButton.isDisplayed();
         return true;
     }
 
+    @Step
     public boolean searchElementFooter(){
         elementFooter.isDisplayed();
         return true;
     }
 
+    @Step
     public void clickElementMenu(){
         elementMenu.click();
     }
 
-
+    @Step
     public boolean getHeaderLinks(){
         List<WebElement> headerLinks = new ArrayList<>();
 
@@ -108,29 +117,36 @@ public class MainPage extends AbstractPage{
         headerLinks.add(headerCountrySelect);
 
         for (WebElement item: headerLinks) {
-           item.isDisplayed();
+            if (!item.isDisplayed()) {
+                return false;
+            }
         }
         return true;
     }
 
+    @Step
     public void clickYellowTailElement(){
         headerYellowTail.click();
     }
 
+    @Step
     public void clickCountrySelect(){
         headerCountrySelect.click();
     }
 
+    @Step
     public ChinaYellowTailPage clickCountryChina(){
         countryChina.click();
         return new ChinaYellowTailPage();
     }
 
+    @Step
     public WhereToBuyPage clickWhereToBuy(){
         headerWhereToBuy.click();
         return new WhereToBuyPage();
     }
 
+    @Step
     public CocktailsPage clickCocktails(){
         headerCocktails.click();
         return new CocktailsPage();
