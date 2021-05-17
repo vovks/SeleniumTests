@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static Utils.Waiters.waitForElementToBeVisible;
+import static utils.Waiters.waitForElementToBeVisible;
 
 public class ChinaYellowTailPage extends AbstractPage{
 
@@ -13,7 +13,7 @@ public class ChinaYellowTailPage extends AbstractPage{
         waitForLoadableElement();
     }
 
-    @Step
+    @Step("wait element is loaded")
     @Override
     public void waitForLoadableElement() {
         waitForElementToBeVisible(findWineButtonChina,3);
@@ -25,12 +25,12 @@ public class ChinaYellowTailPage extends AbstractPage{
     @FindBy(css = ".sgg-comp-social-icon>.fa.fa-weibo")
     private WebElement findWeiboButton;
 
-    @Step
+    @Step("FindWineButton China is visible")
     public String checkFindWineButtonChina(){
         return findWineButtonChina.getText();
     }
 
-    @Step
+    @Step("click on Weibo button")
     public void clickWeiboButton(){
         findWeiboButton.click();
     }

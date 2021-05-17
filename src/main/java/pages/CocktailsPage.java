@@ -1,13 +1,11 @@
 package pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import java.util.ArrayList;
 import java.util.List;
 
-import static Utils.Waiters.waitForElementToBeVisible;
+import static utils.Waiters.waitForElementToBeVisible;
 
 public class CocktailsPage extends AbstractPage{
 
@@ -15,10 +13,10 @@ public class CocktailsPage extends AbstractPage{
         super();
     }
 
-    @Step
+    @Step("wait element is loaded")
     @Override
     public void waitForLoadableElement() {
-        waitForElementToBeVisible(findVeryBerrySlushieRecipe, 3);
+        waitForElementToBeVisible(recipes.get(0), 3);
 
     }
 
@@ -28,86 +26,52 @@ public class CocktailsPage extends AbstractPage{
     @FindBy(css = ".filter-options [data-value=\"red\"]")
     private WebElement selectRedWineCocktails;
 
-    @FindBy(css = "[href=\"mulled-wine\"]")
-    private WebElement findMulledWineRecipe;
-
-    @FindBy(css = "[href=\"red-wine-spritzer\"]")
-    private WebElement findRedWineSpritzerRecipe;
-
-    @FindBy(css = "[href=\"chocolate-fondue\"]")
-    private WebElement findChocolateFondueRecipe;
-
-    @FindBy(css = "[href=\"yellow-tailshake\"]")
-    private WebElement findYellowTailshakeRecipe;
-
-    @FindBy(css = "[href=\"red-hot-chocolate\"]")
-    private WebElement findRedHotChocolateRecipe;
-
-    @FindBy(css = "[href=\"winter-red-spritz\"]")
-    private WebElement findWinterRedSpritzRecipe;
-
-    @FindBy(css = "[href=\"very-berry-slushie\"]")
-    private WebElement findVeryBerrySlushieRecipe;
-
     @FindBy(css = "[href=\"raspberry-rose\"]")
     private WebElement findRaspberryRoseRecipe;
 
     @FindBy(css = ".filter-options [data-value=\"bubbles\"]")
     private WebElement selectSparklingWineCocktails;
 
+    @FindBy(css = "[data-types=\"bubbles\"], [data-types=\"red\"]")
+    private List<WebElement> recipesOnPage;
 
-    @Step
+    @FindBy(css = "[href=\"mulled-wine\"], [href=\"red-wine-spritzer\"], [href=\"chocolate-fondue\"], [href=\"yellow-tailshake\"], [href=\"red-hot-chocolate\"], [href=\"winter-red-spritz\"], [href=\"very-berry-slushie\"]")
+    private List<WebElement> recipes;
+
+    @Step("click on Select")
     public void clickSelectType(){
         findSelectType.click();
     }
 
-    @Step
+    @Step("Select Red Wine Cocktails group")
     public void clickOnRedWineCocktailsType(){
         selectRedWineCocktails.click();
     }
 
-    @Step
-    public boolean getListOfCocktailsRecipes(){
-        List<WebElement> wineRecipes = new ArrayList<>();
-
-        boolean isAllNotShown = true;
-        wineRecipes.add(findMulledWineRecipe);
-        wineRecipes.add(findRedWineSpritzerRecipe);
-        wineRecipes.add(findChocolateFondueRecipe);
-        wineRecipes.add(findYellowTailshakeRecipe);
-        wineRecipes.add(findRedHotChocolateRecipe);
-        wineRecipes.add(findWinterRedSpritzRecipe);
-        wineRecipes.add(findVeryBerrySlushieRecipe);
-
-        for (WebElement item: wineRecipes) {
-            if (!item.isDisplayed()) {
-                isAllNotShown = false;
-                return isAllNotShown;
-            }
-        };
-
-            return isAllNotShown;
+    @Step("check list of Cocktails recipes ")
+    public int getListOfCocktailsRecipes(){
+        return recipes.size();
     }
 
-    @Step
+    @Step("navigate to RecipePage")
     public RecipePage clickOnRaspberryRoseRecipe(){
         findRaspberryRoseRecipe.click();
         return new RecipePage();
     }
 
-    @Step
+    @Step("select Sparkling Wine Cocktails group")
     public void clickOnSparklingWineCocktailsType(){
         selectSparklingWineCocktails.click();
     }
 
-    @Step
+    @Step("check MULTIPLE type is visible")
     public String checkMultipleType(){
         return findSelectType.getText();
     }
 
-    @Step
+    @Step("check list of recipes on page ")
     public int getListOfMultipleCocktailsRecipes(){
-        return DriverProvider.getDriver().findElements(By.cssSelector("[data-types=\"bubbles\"], [data-types=\"red\"]")).size();
+        return recipesOnPage.size();
         }
 
 }

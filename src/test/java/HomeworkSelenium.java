@@ -51,10 +51,9 @@ public class HomeworkSelenium extends JunitRunner{
         mainPage.clickElementMenu();
         mainPage.waitForLoadableElement();
 
-        Assertions.assertTrue(mainPage.getHeaderLinks());
+        Assertions.assertEquals(mainPage.getHeaderLinks(), 7);
 
         mainPage.clickYellowTailElement();
-        //mainPage.waitForElementMenu();
 
         Assertions.assertTrue(mainPage.searchElementMenu());
     }
@@ -142,7 +141,7 @@ public class HomeworkSelenium extends JunitRunner{
 
         cocktailsPage.waitForLoadableElement();
 
-        Assertions.assertTrue(cocktailsPage.getListOfCocktailsRecipes());
+        Assertions.assertEquals(cocktailsPage.getListOfCocktailsRecipes(), 7);
     }
 
     @Test

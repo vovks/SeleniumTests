@@ -1,5 +1,4 @@
-import Utils.Constants;
-import org.junit.jupiter.api.AfterEach;
+import utils.Constants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.DriverProvider;
@@ -15,10 +14,5 @@ public class JunitRunner {
         DriverProvider.getDriver().manage().deleteAllCookies();
         DriverProvider.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
 
-    }
-
-    @AfterEach
-    public void after(){
-        DriverProvider.closeBrowser();
     }
 }

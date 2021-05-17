@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 public class Constants {
     public final static String PATH_TO_CHROME_DRIVER = "src/test/resources/chromedriver.exe";

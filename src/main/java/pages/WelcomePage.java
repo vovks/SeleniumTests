@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import static Utils.Waiters.waitForElementToBeVisible;
+import static utils.Waiters.waitForElementToBeVisible;
 
 
 public class WelcomePage extends AbstractPage{
@@ -14,7 +14,7 @@ public class WelcomePage extends AbstractPage{
         super();
     }
 
-    @Step
+    @Step("wait element is loaded")
     @Override
     public void waitForLoadableElement() {
         waitForElementToBeVisible(welcomeButton, 3);
@@ -36,30 +36,52 @@ public class WelcomePage extends AbstractPage{
     @FindBy(css = "[value=Welcome]")
     private WebElement welcomeButton;
 
-    @Step
+    @Step("confirmation text --I am of legal drinking age in-- is visible")
     public String getConfirmationText(){
         return getConfirmationText.getText();
     }
 
-    @Step
+    @Step("confirmation Checkbox before --I am of legal drinking age in-- is visible")
     public boolean getConfirmationCheckbox(){
-        confirmationCheckbox.isDisplayed();
-        return true;
+        try {
+            if (confirmationCheckbox.isDisplayed()){
+                return true;
+            }
+        }
+        catch (Exception e) {
+            return false;
+        }
+        return confirmationCheckbox.isDisplayed();
     }
 
-    @Step
+    @Step("Dropdown with Select is visible")
     public boolean getElementSelect(){
-        elementSelect.isDisplayed();
-        return true;
+        try {
+            if (elementSelect.isDisplayed()){
+                return true;
+            }
+        }
+        catch (Exception e) {
+            return false;
+        }
+        return elementSelect.isDisplayed();
+
     }
 
-    @Step
+    @Step("Welcome button is visible")
     public boolean checkWelcomeButtonIsDisabled(){
-        welcomeButtonIsDisabled.isDisplayed();
-        return true;
+        try {
+            if (welcomeButtonIsDisabled.isDisplayed()){
+                return true;
+            }
+        }
+        catch (Exception e) {
+            return false;
+        }
+       return welcomeButtonIsDisabled.isDisplayed();
     }
 
-    @Step
+    @Step("navigate to Main Page")
     public MainPage welcomePageIsPassed(){
         confirmationCheckbox.click();
 
