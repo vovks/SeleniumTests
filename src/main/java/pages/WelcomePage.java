@@ -44,41 +44,28 @@ public class WelcomePage extends AbstractPage{
     @Step("confirmation Checkbox before --I am of legal drinking age in-- is visible")
     public boolean getConfirmationCheckbox(){
         try {
-            if (confirmationCheckbox.isDisplayed()){
-                return true;
-            }
-        }
-        catch (Exception e) {
+            return confirmationCheckbox.isDisplayed();
+        } catch (Exception e) {
             return false;
         }
-        return confirmationCheckbox.isDisplayed();
     }
 
     @Step("Dropdown with Select is visible")
     public boolean getElementSelect(){
         try {
-            if (elementSelect.isDisplayed()){
-                return true;
-            }
-        }
-        catch (Exception e) {
+            return elementSelect.isDisplayed();
+        } catch (Exception e) {
             return false;
         }
-        return elementSelect.isDisplayed();
-
     }
 
     @Step("Welcome button is visible")
     public boolean checkWelcomeButtonIsDisabled(){
         try {
-            if (welcomeButtonIsDisabled.isDisplayed()){
-                return true;
-            }
-        }
-        catch (Exception e) {
+            return welcomeButtonIsDisabled.isDisplayed();
+        } catch (Exception e) {
             return false;
         }
-       return welcomeButtonIsDisabled.isDisplayed();
     }
 
     @Step("navigate to Main Page")

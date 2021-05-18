@@ -62,66 +62,46 @@ public class MainPage extends AbstractPage{
     @Step("check element Menu is visible")
     public boolean searchElementMenu(){
         try {
-            if (elementMenu.isDisplayed()){
-                return true;
-            }
-        }
-        catch (Exception e) {
+            return elementMenu.isDisplayed();
+        } catch (Exception e) {
             return false;
         }
-        return elementMenu.isDisplayed();
     }
 
     @Step("check --WELCOME TO THE WORLD OF [Yellow tail]-- is visible")
     public boolean searchBigText(){
         try {
-            if (bigText.isDisplayed()){
-                return true;
-            }
-        }
-        catch (Exception e) {
+            return bigText.isDisplayed();
+        } catch (Exception e) {
             return false;
         }
-        return bigText.isDisplayed();
     }
 
     @Step("check --We are passionate about creating great tasting, quality wines for everyone to enjoy-- is visible")
     public boolean searchSmallerText(){
         try {
-            if (smallerText.isDisplayed()){
-                return true;
-            }
-        }
-        catch (Exception e) {
+            return smallerText.isDisplayed();
+        } catch (Exception e) {
             return false;
         }
-        return smallerText.isDisplayed();
     }
 
     @Step("check --find your wine button-- is visible")
     public boolean searchFindWineButton(){
         try {
-            if (findWineButton.isDisplayed()){
-                return true;
-            }
-        }
-        catch (Exception e) {
+            return findWineButton.isDisplayed();
+        } catch (Exception e) {
             return false;
         }
-        return findWineButton.isDisplayed();
     }
 
     @Step("check footer is visible")
     public boolean searchElementFooter(){
         try {
-            if (elementFooter.isDisplayed()){
-                return true;
-            }
-        }
-        catch (Exception e) {
+            return elementFooter.isDisplayed();
+        } catch (Exception e) {
             return false;
         }
-       return elementFooter.isDisplayed();
     }
 
     @Step("click on Menu")

@@ -38,15 +38,11 @@ public class WhereToBuyPage extends AbstractPage {
     }
 
     @Step("Results of search are visible")
-    public boolean getElementResults(){
+    public boolean getElementResults() {
         try {
-            if (findElementResults.isDisplayed()){
-                return true;
-            }
-        }
-        catch (Exception e) {
+            return findElementResults.isDisplayed();
+        } catch (Exception e) {
             return false;
         }
-        return findElementResults.isDisplayed();
     }
 }

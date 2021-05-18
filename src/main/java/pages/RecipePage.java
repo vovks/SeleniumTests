@@ -23,13 +23,9 @@ public class RecipePage extends AbstractPage {
     @Step("check Ingredients for recipe")
     public boolean checkIngredients(){
         try {
-            if (findIngredients.isDisplayed()){
-                return true;
-            }
-        }
-        catch (Exception e) {
+            return findIngredients.isDisplayed();
+        } catch (Exception e) {
             return false;
         }
-       return findIngredients.isDisplayed();
     }
 }
